@@ -9,11 +9,18 @@ import {
   Button,
 } from "@material-ui/core";
 
+import { signin, signup } from "../../redux/actions/auth";
+
+import { useDispatch } from "react-redux";
+
 import { useStyles } from "./styles";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
 
 function Login() {
+  const [isPassMatched, setMatch] = useState(true);
+  const [helperText, setHelper] = useState("");
   const [isClient, setIsClient] = useState(true);
   const [formData, setFormDate] = useState({
     firstname: "",
@@ -22,21 +29,39 @@ function Login() {
     password: "",
     confirmPassword: "",
   });
+  const history = useHistory();
+  const dispatch = useDispatch();
   const classes = useStyles();
-  const handleClick = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formData);
+    if (!isPassMatched) {
+    } else {
+      if (isClient) {
+        dispatch(signin(formData, history));
+      } else {
+        dispatch(signup(formData, history));
+      }
+    }
   };
   const handleChange = (e) => {
     setFormDate({ ...formData, [e.target.name]: e.target.value });
   };
+  useEffect(() => {
+    if (formData.password === formData.confirmPassword) {
+      setMatch(true);
+      setHelper("");
+    } else {
+      setMatch(false);
+      setHelper("Passwords mismatch");
+    }
+  }, [formData.confirmPassword, formData.password]);
   return (
     <>
       <CssBaseline />
       <Container className={classes.root} maxWidth="sm">
         <Paper elevation={3}>
           <Container className={classes.container}>
-            <form>
+            <form onSubmit={handleSubmit}>
               <Grid container spacing={4}>
                 <Grid item xs={12}>
                   <Box display="flex" justifyContent="center">
@@ -99,6 +124,8 @@ function Login() {
                   <Grid item xs={12}>
                     <Box display="flex" justifyContent="center">
                       <TextField
+                        error={!isPassMatched}
+                        helperText={helperText}
                         onChange={handleChange}
                         fullWidth
                         type="password"
@@ -116,7 +143,6 @@ function Login() {
                       fullWidth
                       variant="contained"
                       color="primary"
-                      onClick={handleClick}
                     >
                       {isClient ? "Sign in" : "Sign up"}
                     </Button>

@@ -1,4 +1,4 @@
-import Login from "./components.js/login/Login";
+import Login from "./components/login/Login";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 const App = () => {
   return (
