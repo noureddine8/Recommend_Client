@@ -10,11 +10,8 @@ import {
 } from "@material-ui/core";
 
 import { signin, signup } from "../../redux/actions/auth";
-
-import { useDispatch } from "react-redux";
-
+import { useDispatch, useSelector } from "react-redux";
 import { useStyles } from "./styles";
-
 import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 
@@ -31,13 +28,14 @@ function Login() {
   });
   const history = useHistory();
   const dispatch = useDispatch();
+  const auth = useSelector((state) => state.auth);
   const classes = useStyles();
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!isPassMatched) {
+    if (isClient) {
+      dispatch(signin(formData, history));
     } else {
-      if (isClient) {
-        dispatch(signin(formData, history));
+      if (!isPassMatched) {
       } else {
         dispatch(signup(formData, history));
       }
@@ -55,11 +53,12 @@ function Login() {
       setHelper("Passwords mismatch");
     }
   }, [formData.confirmPassword, formData.password]);
+
   return (
     <>
       <CssBaseline />
-      <Container className={classes.root} maxWidth="sm">
-        <Paper elevation={3}>
+      <Container className={classes.root}>
+        <Paper elevation={3} className={classes.paper}>
           <Container className={classes.container}>
             <form onSubmit={handleSubmit}>
               <Grid container spacing={4}>
