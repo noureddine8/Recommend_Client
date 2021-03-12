@@ -12,6 +12,7 @@ import { useStyles } from "./styles";
 import React, { useState, useEffect } from "react";
 import { LOGOUT } from "../../redux/actionTypes";
 import { useDispatch } from "react-redux";
+
 function Navbar(props) {
   const [currentUser, setCurrentUser] = useState(
     localStorage.getItem("profile")?.user?.name
@@ -20,13 +21,17 @@ function Navbar(props) {
   const history = useHistory();
   const location = useLocation();
   const dispatch = useDispatch();
+
   const handleIconClick = (endPoint) => {
     history.push(`/${endPoint}`);
   };
+
   const handleLogout = () => {
     dispatch({ type: LOGOUT });
     history.push("Login");
+    setCurrentUser(null);
   };
+
   useEffect(() => {
     setCurrentUser(JSON.parse(localStorage.getItem("profile"))?.user?.name);
   }, [location]);

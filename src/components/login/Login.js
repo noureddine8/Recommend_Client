@@ -16,16 +16,17 @@ import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 
 function Login() {
-  const [isPassMatched, setMatch] = useState(true);
-  const [helperText, setHelper] = useState("");
-  const [isClient, setIsClient] = useState(true);
-  const [formData, setFormDate] = useState({
+  const initialformData = {
     firstname: "",
     lastname: "",
     email: "",
     password: "",
     confirmPassword: "",
-  });
+  };
+  const [formData, setFormData] = useState(initialformData);
+  const [isPassMatched, setMatch] = useState(true);
+  const [helperText, setHelper] = useState("");
+  const [isClient, setIsClient] = useState(true);
   const history = useHistory();
   const dispatch = useDispatch();
   const auth = useSelector((state) => state.auth);
@@ -42,7 +43,7 @@ function Login() {
     }
   };
   const handleChange = (e) => {
-    setFormDate({ ...formData, [e.target.name]: e.target.value });
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
   useEffect(() => {
     if (formData.password === formData.confirmPassword) {
@@ -64,8 +65,13 @@ function Login() {
               <Grid container spacing={4}>
                 <Grid item xs={12}>
                   <Box display="flex" justifyContent="center">
-                    <Typography variant="h4" gutterBottom>
+                    <Typography variant="h3" gutterBottom>
                       {isClient ? "Sign in" : "Sign up"}
+                    </Typography>
+                  </Box>
+                  <Box display="flex" justifyContent="center">
+                    <Typography variant="h6" color="secondary" gutterBottom>
+                      {auth.error}
                     </Typography>
                   </Box>
                 </Grid>
@@ -150,11 +156,11 @@ function Login() {
                 <Grid item xs={12}>
                   <Box display="flex" justifyContent="center">
                     <Button
-                      onClick={() =>
-                        setIsClient((prev) => {
-                          return !prev;
-                        })
-                      }
+                      onClick={() => {
+                        setFormData(initialformData);
+                        setIsClient((prev) => !prev);
+                        auth.error = "";
+                      }}
                     >
                       {isClient
                         ? "Don't have an account? Sign Up"

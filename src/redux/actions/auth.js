@@ -1,5 +1,5 @@
 import * as api from "../../api/index";
-import { AUTH } from "../actionTypes";
+import { AUTH, AUTH_ERROR } from "../actionTypes";
 export const signin = (formData, history) => async (dispatch) => {
   try {
     const { data } = await api.signIn(formData);
@@ -7,6 +7,7 @@ export const signin = (formData, history) => async (dispatch) => {
     history.push("/");
   } catch (error) {
     console.log(error);
+    dispatch({ type: AUTH_ERROR, payload: error.response.data.message });
   }
 };
 
@@ -17,6 +18,6 @@ export const signup = (formData, history) => async (dispatch) => {
     dispatch({ type: AUTH, payload: data });
     history.push("/");
   } catch (error) {
-    console.log(error);
+    dispatch({ type: AUTH_ERROR, payload: error.response.data.message });
   }
 };
