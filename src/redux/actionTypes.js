@@ -4,3 +4,6 @@ export const LOAD_USER = "LOAD_USER";
 export const LOAD_ERROR = "LOAD_ERROR";
 export const AUTH_ERROR = "AUTH_ERROR";
 export const LOGOUT = "LOGOUT";
+export const MOVIES_LOADING = "MOVIES_LOADING";
+export const MOVIES_LOADED = "MOVIES_LOADED";
+export const MOVIES_ERROR = "MOVIES_ERROR";

@@ -1,14 +1,11 @@
 import * as ActionTypes from "../actionTypes";
-const userReducer = (
-  state = { user: null, error: null, isLoading: false },
-  action
-) => {
+const userReducer = (state = { user: null, error: null }, action) => {
   switch (action.type) {
     case ActionTypes.LOAD_USER:
-      return { ...state, user: action.payload, isLoading: false };
+      return { ...state, user: action.payload, error: null };
 
     case ActionTypes.LOAD_ERROR:
-      return { ...state, error: action.payload, isLoading: false };
+      return { ...state, user: null, error: action.payload };
 
     default:
       return state;

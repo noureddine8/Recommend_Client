@@ -28,7 +28,7 @@ function Navbar(props) {
   const handleLogout = () => {
     dispatch({ type: AUTH_LOADING });
     dispatch({ type: LOGOUT });
-    history.push("Login");
+    history.push("/");
     setCurrentUser(null);
   };
 
