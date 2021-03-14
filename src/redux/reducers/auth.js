@@ -1,16 +1,36 @@
 import * as ActionTypes from "../actionTypes";
 
-const authReducer = (state = { authData: null, error: null }, action) => {
+const authReducer = (
+  state = {
+    token: JSON.parse(localStorage.getItem("profile")),
+    error: null,
+    isLoading: false,
+  },
+  action
+) => {
   switch (action.type) {
     case ActionTypes.AUTH:
-      console.log(action.payload);
-      localStorage.setItem("profile", JSON.stringify({ ...action.payload }));
-      return { ...state, authData: action.payload };
+      localStorage.setItem(
+        "profile",
+        JSON.stringify({ token: action.payload.token })
+      );
+      return {
+        ...state,
+        token: action.payload.token,
+        error: null,
+        isLoading: false,
+      };
+
+    case ActionTypes.AUTH_LOADING:
+      return { ...state, isLoading: true, error: null };
+
     case ActionTypes.AUTH_ERROR:
-      return { ...state, error: action.payload };
+      return { ...state, error: action.payload, isLoading: false };
+
     case ActionTypes.LOGOUT:
       localStorage.clear();
-      return { ...state };
+      return { ...state, isLoading: false, error: null };
+
     default:
       return state;
   }

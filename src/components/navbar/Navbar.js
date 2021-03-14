@@ -10,13 +10,12 @@ import FlightTakeoffIcon from "@material-ui/icons/FlightTakeoff";
 import { useHistory, useLocation } from "react-router-dom";
 import { useStyles } from "./styles";
 import React, { useState, useEffect } from "react";
-import { LOGOUT } from "../../redux/actionTypes";
-import { useDispatch } from "react-redux";
+import { LOGOUT, AUTH_LOADING } from "../../redux/actionTypes";
+import { useDispatch, useSelector } from "react-redux";
 
 function Navbar(props) {
-  const [currentUser, setCurrentUser] = useState(
-    localStorage.getItem("profile")?.user?.name
-  );
+  const user = useSelector((state) => state.user);
+  const [currentUser, setCurrentUser] = useState(user.user?.name);
   const classes = useStyles();
   const history = useHistory();
   const location = useLocation();
@@ -27,14 +26,15 @@ function Navbar(props) {
   };
 
   const handleLogout = () => {
+    dispatch({ type: AUTH_LOADING });
     dispatch({ type: LOGOUT });
     history.push("Login");
     setCurrentUser(null);
   };
 
   useEffect(() => {
-    setCurrentUser(JSON.parse(localStorage.getItem("profile"))?.user?.name);
-  }, [location]);
+    setCurrentUser(user.user?.name);
+  }, [user.user?.name, location]);
   return (
     <AppBar position="fixed">
       <Toolbar>
