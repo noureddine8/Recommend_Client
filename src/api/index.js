@@ -15,3 +15,7 @@ export const signUp = (formData) => API.post("/users/signup", formData);
 export const loadUser = () => API.get("/users/user");
 
 export const getAllMovies = () => API.get("/recommendations/type/movie");
+export const getAllSeries = () => API.get("/recommendations/type/series");
+
+export const postRecommendation = (data) => API.post("/recommendations", data);
+export const deleteRecommendation = (id) => API.delete(`recommendations/${id}`);

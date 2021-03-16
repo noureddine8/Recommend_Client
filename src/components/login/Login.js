@@ -87,6 +87,7 @@ function Login() {
                           required
                           label="First Name"
                           name="firstname"
+                          value={formData.firstname}
                         />
                       </Box>
                     </Grid>
@@ -98,6 +99,7 @@ function Login() {
                           required
                           label="Last Name"
                           name="lastname"
+                          value={formData.lastname}
                         />
                       </Box>
                     </Grid>
@@ -112,6 +114,7 @@ function Login() {
                       required
                       label="Email"
                       name="email"
+                      value={formData.email}
                     />
                   </Box>
                 </Grid>
@@ -124,6 +127,7 @@ function Login() {
                       required
                       label="Password"
                       name="password"
+                      value={formData.password}
                     />
                   </Box>
                 </Grid>
@@ -139,6 +143,7 @@ function Login() {
                         required
                         label="Confirm Password"
                         name="confirmPassword"
+                        value={formData.confirmPassword}
                       />
                     </Box>
                   </Grid>

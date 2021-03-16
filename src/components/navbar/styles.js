@@ -7,6 +7,6 @@ export const useStyles = makeStyles((theme) => ({
   avatar: {
     marginRight: "10px",
     color: theme.palette.getContrastText(deepPurple[500]),
-    backgroundColor: deepPurple[500],
+    backgroundColor: deepPurple[800],
   },
 }));

@@ -6,7 +6,7 @@ import {
   Button,
   Avatar,
 } from "@material-ui/core";
-import FlightTakeoffIcon from "@material-ui/icons/FlightTakeoff";
+import TheatersSharpIcon from "@material-ui/icons/TheatersSharp";
 import { useHistory, useLocation } from "react-router-dom";
 import { useStyles } from "./styles";
 import React, { useState, useEffect } from "react";
@@ -44,10 +44,10 @@ function Navbar(props) {
           aria-label="menu"
           onClick={() => handleIconClick("")}
         >
-          <FlightTakeoffIcon />
+          <TheatersSharpIcon />
         </IconButton>
         <Typography variant="h6" className={classes.title}>
-          Traveley
+          Recommend
         </Typography>
         {!currentUser ? (
           <Button color="inherit" onClick={() => handleIconClick("Login")}>

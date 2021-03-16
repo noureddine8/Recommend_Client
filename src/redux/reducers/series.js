@@ -1,55 +1,55 @@
 import * as ActionTypes from "../actionTypes";
 
-const movieReducer = (
+const seriesReducer = (
   state = {
-    movie: [],
+    series: [],
     isLoading: false,
     error: null,
   },
   action
 ) => {
   switch (action.type) {
-    case ActionTypes.MOVIES_ERROR:
+    case ActionTypes.SERIES_ERROR:
       return { ...state, isLoading: false, error: action.payload };
-    case ActionTypes.MOVIES_LOADING:
+    case ActionTypes.SERIES_LOADING:
       return { ...state, isLoading: true, error: null };
-    case ActionTypes.MOVIES_LOADED:
+    case ActionTypes.SERIES_LOADED:
       return {
         ...state,
-        movie: action.payload,
+        series: action.payload,
         isLoading: false,
         error: null,
       };
-    case ActionTypes.ADD_MOVIE_ERROR:
+    case ActionTypes.ADD_SERIES_ERROR:
       return { ...state, isLoading: false, error: action.payload };
 
-    case ActionTypes.ADD_MOVIE_LOADED:
+    case ActionTypes.ADD_SERIES_LOADED:
       return {
         ...state,
-        movie: [...state.movie, action.payload],
+        series: [...state.series, action.payload],
         isLoading: false,
         error: null,
       };
 
-    case ActionTypes.ADD_MOVIE_LOADING:
+    case ActionTypes.ADD_SERIES_LOADING:
       return { ...state, isLoading: true, error: null };
 
-    case ActionTypes.DELETE_MOVIE_LOADED:
+    case ActionTypes.DELETE_SERIES_LOADED:
       return {
         ...state,
         isLoading: false,
         error: null,
-        movie: state.movie.filter((item) => item._id !== action.payload.id),
+        series: state.series.filter((item) => item._id !== action.payload.id),
       };
 
-    case ActionTypes.DELETE_MOVIE_LOADING:
+    case ActionTypes.DELETE_SERIES_LOADING:
       return { ...state, isLoading: true, error: null };
 
-    case ActionTypes.DELETE_MOVIE_ERROR:
+    case ActionTypes.DELETE_SERIES_ERROR:
       return { ...state, isLoading: false, error: action.payload };
 
     default:
       return state;
   }
 };
-export default movieReducer;
+export default seriesReducer;
