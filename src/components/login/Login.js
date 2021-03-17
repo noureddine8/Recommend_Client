@@ -14,6 +14,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useStyles } from "./styles";
 import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
+import Navbar from "../navbar/Navbar";
 
 function Login() {
   const initialformData = {
@@ -59,124 +60,128 @@ function Login() {
   return (
     <>
       <CssBaseline />
-
+      <Navbar />
       <Container className={classes.root}>
         <Paper elevation={3} className={classes.paper}>
           <Container className={classes.container}>
-            <form onSubmit={handleSubmit}>
-              <Grid container spacing={4}>
-                <Grid item xs={12}>
-                  <Box display="flex" justifyContent="center">
-                    <Typography variant="h3" gutterBottom>
-                      {isClient ? "Sign in" : "Sign up"}
-                    </Typography>
-                  </Box>
-                  <Box display="flex" justifyContent="center">
-                    <Typography variant="h6" color="secondary" gutterBottom>
-                      {auth.error}
-                    </Typography>
-                  </Box>
-                </Grid>
-                {!isClient && (
-                  <>
-                    <Grid item xs={12} md={6}>
-                      <Box display="flex" justifyContent="center">
-                        <TextField
-                          onChange={handleChange}
-                          fullWidth
-                          required
-                          label="First Name"
-                          name="firstname"
-                          value={formData.firstname}
-                        />
-                      </Box>
-                    </Grid>
-                    <Grid item xs={12} md={6}>
-                      <Box display="flex" justifyContent="center">
-                        <TextField
-                          onChange={handleChange}
-                          fullWidth
-                          required
-                          label="Last Name"
-                          name="lastname"
-                          value={formData.lastname}
-                        />
-                      </Box>
-                    </Grid>
-                  </>
-                )}
-                <Grid item xs={12}>
-                  <Box display="flex" justifyContent="center">
-                    <TextField
-                      onChange={handleChange}
-                      fullWidth
-                      type="email"
-                      required
-                      label="Email"
-                      name="email"
-                      value={formData.email}
-                    />
-                  </Box>
-                </Grid>
-                <Grid item xs={12}>
-                  <Box display="flex" justifyContent="center">
-                    <TextField
-                      onChange={handleChange}
-                      fullWidth
-                      type="password"
-                      required
-                      label="Password"
-                      name="password"
-                      value={formData.password}
-                    />
-                  </Box>
-                </Grid>
-                {!isClient && (
+            {auth.token ? (
+              <Typography variant="h3">You are Already logged in</Typography>
+            ) : (
+              <form onSubmit={handleSubmit}>
+                <Grid container spacing={4}>
+                  <Grid item xs={12}>
+                    <Box display="flex" justifyContent="center">
+                      <Typography variant="h3" gutterBottom>
+                        {isClient ? "Sign in" : "Sign up"}
+                      </Typography>
+                    </Box>
+                    <Box display="flex" justifyContent="center">
+                      <Typography variant="h6" color="secondary" gutterBottom>
+                        {auth.error}
+                      </Typography>
+                    </Box>
+                  </Grid>
+                  {!isClient && (
+                    <>
+                      <Grid item xs={12} md={6}>
+                        <Box display="flex" justifyContent="center">
+                          <TextField
+                            onChange={handleChange}
+                            fullWidth
+                            required
+                            label="First Name"
+                            name="firstname"
+                            value={formData.firstname}
+                          />
+                        </Box>
+                      </Grid>
+                      <Grid item xs={12} md={6}>
+                        <Box display="flex" justifyContent="center">
+                          <TextField
+                            onChange={handleChange}
+                            fullWidth
+                            required
+                            label="Last Name"
+                            name="lastname"
+                            value={formData.lastname}
+                          />
+                        </Box>
+                      </Grid>
+                    </>
+                  )}
                   <Grid item xs={12}>
                     <Box display="flex" justifyContent="center">
                       <TextField
-                        error={!isPassMatched}
-                        helperText={helperText}
+                        onChange={handleChange}
+                        fullWidth
+                        type="email"
+                        required
+                        label="Email"
+                        name="email"
+                        value={formData.email}
+                      />
+                    </Box>
+                  </Grid>
+                  <Grid item xs={12}>
+                    <Box display="flex" justifyContent="center">
+                      <TextField
                         onChange={handleChange}
                         fullWidth
                         type="password"
                         required
-                        label="Confirm Password"
-                        name="confirmPassword"
-                        value={formData.confirmPassword}
+                        label="Password"
+                        name="password"
+                        value={formData.password}
                       />
                     </Box>
                   </Grid>
-                )}
-                <Grid item xs={12}>
-                  <Box display="flex" justifyContent="center">
-                    <Button
-                      type="submit"
-                      fullWidth
-                      variant="contained"
-                      color="primary"
-                    >
-                      {isClient ? "Sign in" : "Sign up"}
-                    </Button>
-                  </Box>
+                  {!isClient && (
+                    <Grid item xs={12}>
+                      <Box display="flex" justifyContent="center">
+                        <TextField
+                          error={!isPassMatched}
+                          helperText={helperText}
+                          onChange={handleChange}
+                          fullWidth
+                          type="password"
+                          required
+                          label="Confirm Password"
+                          name="confirmPassword"
+                          value={formData.confirmPassword}
+                        />
+                      </Box>
+                    </Grid>
+                  )}
+                  <Grid item xs={12}>
+                    <Box display="flex" justifyContent="center">
+                      <Button
+                        type="submit"
+                        fullWidth
+                        variant="contained"
+                        color="primary"
+                      >
+                        {isClient ? "Sign in" : "Sign up"}
+                      </Button>
+                    </Box>
+                  </Grid>
+                  <Grid item xs={12}>
+                    <Box display="flex" justifyContent="center">
+                      <Button
+                        onClick={() => {
+                          setFormData(initialformData);
+                          setIsClient((prev) => !prev);
+                          auth.error = "";
+                        }}
+                      >
+                        {isClient
+                          ? "Don't have an account? Sign Up"
+                          : "You already have an account? Sign In"}
+                      </Button>
+                    </Box>
+                  </Grid>
                 </Grid>
-                <Grid item xs={12}>
-                  <Box display="flex" justifyContent="center">
-                    <Button
-                      onClick={() => {
-                        setFormData(initialformData);
-                        setIsClient((prev) => !prev);
-                        auth.error = "";
-                      }}
-                    >
-                      {isClient
-                        ? "Don't have an account? Sign Up"
-                        : "You already have an account? Sign In"}
-                    </Button>
-                  </Box>
-                </Grid>
-              </Grid>
-            </form>
+              </form>
+            )}
           </Container>
         </Paper>
       </Container>

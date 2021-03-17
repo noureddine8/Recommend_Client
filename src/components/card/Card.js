@@ -61,7 +61,7 @@ export default function OutlinedCard({
       </CardContent>
       <CardActions>
         <Button size="small">See More</Button>
-        {users.user?._id === userId && (
+        {userId !== null && users.user?._id === userId && (
           <Button
             variant="contained"
             color="secondary"

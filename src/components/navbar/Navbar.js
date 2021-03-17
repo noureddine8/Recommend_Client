@@ -6,6 +6,7 @@ import {
   Button,
   Avatar,
 } from "@material-ui/core";
+import decode from "jwt-decode";
 import TheatersSharpIcon from "@material-ui/icons/TheatersSharp";
 import { useHistory, useLocation } from "react-router-dom";
 import { useStyles } from "./styles";
@@ -14,8 +15,8 @@ import { LOGOUT, AUTH_LOADING } from "../../redux/actionTypes";
 import { useDispatch, useSelector } from "react-redux";
 
 function Navbar(props) {
-  const user = useSelector((state) => state.user);
-  const [currentUser, setCurrentUser] = useState(user.user?.name);
+  const state = useSelector((state) => state);
+  const [currentUser, setCurrentUser] = useState(state.user.user?.name);
   const classes = useStyles();
   const history = useHistory();
   const location = useLocation();
@@ -28,13 +29,26 @@ function Navbar(props) {
   const handleLogout = () => {
     dispatch({ type: AUTH_LOADING });
     dispatch({ type: LOGOUT });
-    history.push("/");
+    history.push("/Login");
     setCurrentUser(null);
   };
 
   useEffect(() => {
-    setCurrentUser(user.user?.name);
-  }, [user.user?.name, location]);
+    const token = state.auth.token?.token;
+    console.log("Tooooooooken : ", token);
+
+    if (token) {
+      const decoded = decode(token);
+      if (decoded.exp * 1000 < new Date().getTime()) {
+        console.log("Expired");
+        handleLogout();
+      }
+    }
+  }, [location]);
+
+  useEffect(() => {
+    setCurrentUser(state.user.user?.name);
+  }, [state.user.user?.name, location]);
   return (
     <AppBar position="fixed">
       <Toolbar>

@@ -3,37 +3,38 @@ import Navbar from "../navbar/Navbar";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { Typography, CssBaseline, Grid, Button } from "@material-ui/core";
-import CircularProgress from "@material-ui/core/CircularProgress";
 import Card from "../card/Card";
 
 function Home(props) {
+  const token = useSelector((state) => state.auth.token);
   const movies = useSelector((state) => state.movies);
   const series = useSelector((state) => state.series);
   const history = useHistory();
+  const style = { marginTop: token ? 20 : 120, marginLeft: 20 };
 
   return (
     <>
       <CssBaseline />
       <Navbar />
-      <Grid container style={{ marginTop: 100 }} direction="row-reverse">
-        <Grid item xs={12} md={2}>
-          <Button
-            fullWidth
-            variant="contained"
-            color="primary"
-            onClick={() => history.push("/AddRecommend")}
-          >
-            Add a recommendation
-          </Button>
+      {token && (
+        <Grid container style={{ paddingTop: 100 }} direction="row-reverse">
+          <Grid item xs={12} md={4} lg={2}>
+            <Button
+              fullWidth
+              variant="contained"
+              color="primary"
+              onClick={() => history.push("/AddRecommend")}
+            >
+              Add a recommendation
+            </Button>
+          </Grid>
         </Grid>
-      </Grid>
-      <Typography style={{ marginTop: 20, marginLeft: 20 }} variant="h3">
+      )}
+      <Typography variant="h3" style={style}>
         Movies
       </Typography>
       <Grid container spacing={3}>
-        {movies.isLoading ? (
-          <CircularProgress />
-        ) : movies.movie.length === 0 ? (
+        {movies.movie.length === 0 ? (
           <Typography variant="h4" style={{ marginTop: 50, marginLeft: 500 }}>
             No Movie for the moment
           </Typography>
@@ -57,9 +58,7 @@ function Home(props) {
         TV Series
       </Typography>
       <Grid container spacing={3}>
-        {series.isLoading ? (
-          <CircularProgress />
-        ) : series.series.length === 0 ? (
+        {series.series.length === 0 ? (
           <Typography variant="h4" style={{ marginTop: 50, marginLeft: 500 }}>
             No Series for the moment
           </Typography>

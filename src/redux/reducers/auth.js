@@ -29,7 +29,12 @@ const authReducer = (
 
     case ActionTypes.LOGOUT:
       localStorage.clear();
-      return { ...state, isLoading: false, error: null };
+      return {
+        ...state,
+        token: JSON.parse(localStorage.getItem("profile")),
+        isLoading: false,
+        error: null,
+      };
 
     default:
       return state;
