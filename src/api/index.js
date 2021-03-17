@@ -19,3 +19,5 @@ export const getAllSeries = () => API.get("/recommendations/type/series");
 
 export const postRecommendation = (data) => API.post("/recommendations", data);
 export const deleteRecommendation = (id) => API.delete(`recommendations/${id}`);
+export const getRecByGenre = (genre) =>
+  API.get(`recommendations/genre/${genre}`);
