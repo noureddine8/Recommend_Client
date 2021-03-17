@@ -4,7 +4,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 # What is the app about?
 
-This is the front-end part of "M.E.R.N" stack, Movies and TV Series recommendation App.
+This is the front-end part of "M.E.R.N" stack, Movies and TV Series recommendation App. \
 The Server-Side of the app can be found => https://github.com/noureddine8/Recommend_Server
 
 ## Available Scripts
