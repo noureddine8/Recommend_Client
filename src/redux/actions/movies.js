@@ -17,7 +17,7 @@ export const fetchMovies = () => async (dispatch) => {
     const { data } = await api.getAllMovies();
     dispatch({ type: MOVIES_LOADED, payload: data.rec });
   } catch (error) {
-    dispatch({ type: MOVIES_ERROR, payload: error.response.data.message });
+    dispatch({ type: MOVIES_ERROR, payload: error.response?.data.message });
   }
 };
 

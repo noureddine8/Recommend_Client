@@ -57,7 +57,7 @@ function Home(props) {
               color="primary"
               onClick={() => history.push("/AddRecommend")}
             >
-              Add a recommendation
+              Add recommendation
             </Button>
           </Grid>
         </Grid>
@@ -97,7 +97,9 @@ function Home(props) {
               padding: 50,
             }}
           >
-            <Typography variant="h4">No Movie for the moment</Typography>
+            <Typography variant="h4">
+              No {filteredMovieType} movie for the moment
+            </Typography>
           </Grid>
         ) : (
           filteredMovie.map((item) => (
@@ -109,6 +111,7 @@ function Home(props) {
                 imgUrl={item.imgUrl}
                 genre={item.genre}
                 type={item.type}
+                desc="The best in the history."
               />
             </Grid>
           ))
@@ -149,7 +152,9 @@ function Home(props) {
               padding: 50,
             }}
           >
-            <Typography variant="h4">No Series for the moment</Typography>
+            <Typography variant="h4">
+              No {filteredSeriesType} series for the moment
+            </Typography>
           </Grid>
         ) : (
           filteredSeries.map((item) => (
@@ -161,6 +166,7 @@ function Home(props) {
                 imgUrl={item.imgUrl}
                 genre={item.genre}
                 type={item.type}
+                desc="The best in the history."
               />
             </Grid>
           ))

@@ -13,6 +13,7 @@ import { deleteSeries } from "../../redux/actions/series";
 const useStyles = makeStyles({
   root: {
     margin: 30,
+    height: 420,
   },
   madia: { height: 200, paddingTop: "56.25%" },
   title: {
@@ -21,6 +22,7 @@ const useStyles = makeStyles({
   pos: {
     marginBottom: 12,
   },
+  actionContainer: { flex: 1, justifyContent: "space-between" },
 });
 
 export default function OutlinedCard({
@@ -30,11 +32,11 @@ export default function OutlinedCard({
   type,
   genre,
   imgUrl,
+  desc,
 }) {
   const dispatch = useDispatch();
   const classes = useStyles();
   const users = useSelector((state) => state.user);
-  console.log("ID is : ", id);
 
   return (
     <Card className={classes.root} variant="outlined">
@@ -54,18 +56,19 @@ export default function OutlinedCard({
           {type}
         </Typography>
         <Typography variant="body2" component="p">
-          The best trilogy ever
-          <br />
-          Signed by Chris Nolan
+          {desc}
         </Typography>
       </CardContent>
-      <CardActions>
-        <Button size="small">See More</Button>
-        {userId !== null && users.user?._id === userId && (
+      {userId !== null && users.user?._id === userId && (
+        <CardActions className={classes.actionContainer}>
+          <Button variant="contained" color="primary">
+            Edit
+          </Button>
+
           <Button
             variant="contained"
             color="secondary"
-            style={{ marginLeft: 120 }}
+            style={{ alignSelf: "end" }}
             onClick={() => {
               if (type === "movie") {
                 dispatch(deleteMovie(id));
@@ -76,8 +79,8 @@ export default function OutlinedCard({
           >
             Delete
           </Button>
-        )}
-      </CardActions>
+        </CardActions>
+      )}
     </Card>
   );
 }

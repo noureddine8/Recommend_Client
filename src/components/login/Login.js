@@ -47,6 +47,10 @@ function Login() {
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
+
+  useEffect(() => {
+    auth.token && history.push("/");
+  }, []);
   useEffect(() => {
     if (formData.password === formData.confirmPassword) {
       setMatch(true);

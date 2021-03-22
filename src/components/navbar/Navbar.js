@@ -5,6 +5,8 @@ import {
   Typography,
   Button,
   Avatar,
+  Menu,
+  MenuItem,
 } from "@material-ui/core";
 import decode from "jwt-decode";
 import TheatersSharpIcon from "@material-ui/icons/TheatersSharp";
@@ -31,6 +33,15 @@ function Navbar(props) {
     dispatch({ type: LOGOUT });
     history.push("/Login");
     setCurrentUser(null);
+  };
+  const [anchorEl, setAnchorEl] = React.useState(null);
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
   };
 
   useEffect(() => {
@@ -69,9 +80,26 @@ function Navbar(props) {
           </Button>
         ) : (
           <>
-            <Avatar className={classes.avatar}>
-              {currentUser.charAt(0).toUpperCase()}
-            </Avatar>
+            <div>
+              <Avatar className={classes.avatar} onClick={handleClick}>
+                {currentUser.charAt(0).toUpperCase()}
+              </Avatar>
+              <Menu
+                id="simple-menu"
+                anchorEl={anchorEl}
+                keepMounted
+                open={Boolean(anchorEl)}
+                onClose={handleClose}
+              >
+                <MenuItem
+                  onClick={() => {
+                    history.push("/profile");
+                  }}
+                >
+                  Profile
+                </MenuItem>
+              </Menu>
+            </div>
             <Button
               variant="contained"
               color="secondary"
