@@ -35,7 +35,6 @@ function Home(props) {
   const movies = useSelector((state) => state.movies);
   const series = useSelector((state) => state.series);
   const history = useHistory();
-  const style = { marginTop: token ? 20 : 120, marginLeft: 20 };
   const filteredMovie =
     filteredMovieType === "all"
       ? movies.movie
