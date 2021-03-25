@@ -12,17 +12,23 @@ import { deleteSeries } from "../../redux/actions/series";
 
 const useStyles = makeStyles({
   root: {
-    margin: 30,
-    height: 420,
+    maxWidth: 400,
+    height: "100%",
+    display: "flex",
+    flexDirection: "column",
   },
-  madia: { height: 200, paddingTop: "56.25%" },
+  media: { height: 400, paddingTop: "56.25%" },
   title: {
     fontSize: 14,
   },
   pos: {
     marginBottom: 12,
   },
-  actionContainer: { flex: 1, justifyContent: "space-between" },
+  actionContainer: {
+    flex: 1,
+    justifyContent: "space-between",
+    alignItems: "flex-end",
+  },
 });
 
 export default function OutlinedCard({
@@ -32,7 +38,7 @@ export default function OutlinedCard({
   type,
   genre,
   imgUrl,
-  desc,
+  shortDesc,
 }) {
   const dispatch = useDispatch();
   const classes = useStyles();
@@ -40,23 +46,23 @@ export default function OutlinedCard({
 
   return (
     <Card className={classes.root} variant="outlined">
-      <CardMedia className={classes.madia} image={imgUrl} title="Image" />
+      <CardMedia className={classes.media} image={imgUrl} title="Image" />
       <CardContent>
         <Typography
           className={classes.title}
           color="textSecondary"
           gutterBottom
         >
-          {genre}
+          {type}
         </Typography>
         <Typography variant="h5" component="h2">
           {title}
         </Typography>
         <Typography className={classes.pos} color="textSecondary">
-          {type}
+          {genre}
         </Typography>
         <Typography variant="body2" component="p">
-          {desc}
+          {shortDesc}
         </Typography>
       </CardContent>
       {userId !== null && users.user?._id === userId && (
@@ -68,7 +74,6 @@ export default function OutlinedCard({
           <Button
             variant="contained"
             color="secondary"
-            style={{ alignSelf: "end" }}
             onClick={() => {
               if (type === "movie") {
                 dispatch(deleteMovie(id));

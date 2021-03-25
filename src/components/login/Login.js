@@ -7,7 +7,14 @@ import {
   Box,
   TextField,
   Button,
+  IconButton,
+  Input,
+  InputLabel,
+  FormControl,
+  FormHelperText,
 } from "@material-ui/core";
+import Visibility from "@material-ui/icons/Visibility";
+import VisibilityOff from "@material-ui/icons/VisibilityOff";
 
 import { signin, signup } from "../../redux/actions/auth";
 import { useDispatch, useSelector } from "react-redux";
@@ -29,6 +36,9 @@ function Login() {
   const [isPassMatched, setMatch] = useState(true);
   const [helperText, setHelper] = useState("");
   const [isClient, setIsClient] = useState(true);
+  const [isShown, setIsShown] = useState(false);
+  const [isConfirmShown, setIsConfirmShown] = useState(false);
+
   const history = useHistory();
   const dispatch = useDispatch();
   const auth = useSelector((state) => state.auth);
@@ -128,31 +138,67 @@ function Login() {
                   </Grid>
                   <Grid item xs={12}>
                     <Box display="flex" justifyContent="center">
-                      <TextField
-                        onChange={handleChange}
-                        fullWidth
-                        type="password"
-                        required
-                        label="Password"
-                        name="password"
-                        value={formData.password}
-                      />
+                      <FormControl fullWidth={true}>
+                        <InputLabel htmlFor="password">Password</InputLabel>
+
+                        <Input
+                          id="password"
+                          onChange={handleChange}
+                          fullWidth
+                          type={isShown ? "text" : "password"}
+                          required
+                          label="Password"
+                          name="password"
+                          value={formData.password}
+                          endAdornment={
+                            <IconButton
+                              aria-label="toggle password visibility"
+                              onClick={() => {
+                                setIsShown((shown) => !shown);
+                              }}
+                            >
+                              {!isShown ? <VisibilityOff /> : <Visibility />}
+                            </IconButton>
+                          }
+                        />
+                      </FormControl>
                     </Box>
                   </Grid>
                   {!isClient && (
                     <Grid item xs={12}>
                       <Box display="flex" justifyContent="center">
-                        <TextField
-                          error={!isPassMatched}
-                          helperText={helperText}
-                          onChange={handleChange}
-                          fullWidth
-                          type="password"
-                          required
-                          label="Confirm Password"
-                          name="confirmPassword"
-                          value={formData.confirmPassword}
-                        />
+                        <FormControl fullWidth={true} error={!isPassMatched}>
+                          <InputLabel htmlFor="confirm">
+                            Confirm Password
+                          </InputLabel>
+                          <Input
+                            id="confirm"
+                            helperText={helperText}
+                            onChange={handleChange}
+                            fullWidth
+                            type={isConfirmShown ? "text" : "password"}
+                            required
+                            name="confirmPassword"
+                            value={formData.confirmPassword}
+                            endAdornment={
+                              <IconButton
+                                aria-label="toggle password visibility"
+                                onClick={() => {
+                                  setIsConfirmShown((shown) => !shown);
+                                }}
+                              >
+                                {!isConfirmShown ? (
+                                  <VisibilityOff />
+                                ) : (
+                                  <Visibility />
+                                )}
+                              </IconButton>
+                            }
+                          />
+                          <FormHelperText id="component-error-text">
+                            {isPassMatched ? "" : helperText}
+                          </FormHelperText>
+                        </FormControl>
                       </Box>
                     </Grid>
                   )}

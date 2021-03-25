@@ -10,6 +10,7 @@ import {
   InputLabel,
   Select,
   MenuItem,
+  Box,
 } from "@material-ui/core";
 import Card from "../card/Card";
 
@@ -62,7 +63,7 @@ function Home(props) {
           </Grid>
         </Grid>
       )}
-      <Grid container style={style}>
+      <Grid container style={{ marginTop: 20, marginLeft: 30 }}>
         <Grid item xs={12} md={2}>
           <Typography variant="h3">Movies</Typography>
         </Grid>
@@ -85,38 +86,41 @@ function Home(props) {
           </Select>
         </Grid>
       </Grid>
-
-      <Grid container spacing={3}>
-        {filteredMovie.length === 0 ? (
-          <Grid
-            item
-            xs={12}
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              padding: 50,
-            }}
-          >
-            <Typography variant="h4">
-              No {filteredMovieType} movie for the moment
-            </Typography>
-          </Grid>
-        ) : (
-          filteredMovie.map((item) => (
-            <Grid item xs={12} sm={6} md={4} lg={3}>
-              <Card
-                id={item._id}
-                userId={item.userId}
-                title={item.title}
-                imgUrl={item.imgUrl}
-                genre={item.genre}
-                type={item.type}
-                desc="The best in the history."
-              />
+      <Box m={1.5}>
+        <Grid container spacing={1}>
+          {filteredMovie.length === 0 ? (
+            <Grid
+              item
+              xs={12}
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                padding: 50,
+              }}
+            >
+              <Typography variant="h4">
+                {filteredMovieType === "all"
+                  ? "No  movie for the moment"
+                  : `No ${filteredMovieType} movie for the moment`}
+              </Typography>
             </Grid>
-          ))
-        )}
-      </Grid>
+          ) : (
+            filteredMovie.map((item) => (
+              <Grid item xs={12} sm={6} md={4} lg={3}>
+                <Card
+                  id={item._id}
+                  userId={item.userId}
+                  title={item.title}
+                  imgUrl={item.imgUrl}
+                  genre={item.genre}
+                  type={item.type}
+                  shortDesc={item.shortDesc}
+                />
+              </Grid>
+            ))
+          )}
+        </Grid>
+      </Box>
 
       <Grid container style={{ marginTop: 100, marginLeft: 30 }}>
         <Grid item xs={12} md={2}>
@@ -141,37 +145,41 @@ function Home(props) {
           </Select>
         </Grid>
       </Grid>
-      <Grid container spacing={3}>
-        {filteredSeries.length === 0 ? (
-          <Grid
-            item
-            xs={12}
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              padding: 50,
-            }}
-          >
-            <Typography variant="h4">
-              No {filteredSeriesType} series for the moment
-            </Typography>
-          </Grid>
-        ) : (
-          filteredSeries.map((item) => (
-            <Grid item xs={12} sm={6} md={4} lg={3}>
-              <Card
-                id={item._id}
-                userId={item.userId}
-                title={item.title}
-                imgUrl={item.imgUrl}
-                genre={item.genre}
-                type={item.type}
-                desc="The best in the history."
-              />
+      <Box m={1.5}>
+        <Grid container spacing={1}>
+          {filteredSeries.length === 0 ? (
+            <Grid
+              item
+              xs={12}
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                padding: 50,
+              }}
+            >
+              <Typography variant="h4">
+                {filteredSeriesType === "all"
+                  ? "No series for the moment"
+                  : `No ${filteredSeriesType} series for the moment`}
+              </Typography>
             </Grid>
-          ))
-        )}
-      </Grid>
+          ) : (
+            filteredSeries.map((item) => (
+              <Grid item xs={12} sm={6} md={4} lg={3}>
+                <Card
+                  id={item._id}
+                  userId={item.userId}
+                  title={item.title}
+                  imgUrl={item.imgUrl}
+                  genre={item.genre}
+                  type={item.type}
+                  shortDesc={item.shortDesc}
+                />
+              </Grid>
+            ))
+          )}
+        </Grid>
+      </Box>
     </>
   );
 }
