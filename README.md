@@ -47,3 +47,6 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 # Screenshots
 ### Sign in page
 <img src ="screenshots/Sign-In.png" width="1000" />
+
+### Sign up page
+<img src ="screenshots/Sign-up.png" width="1000" />
