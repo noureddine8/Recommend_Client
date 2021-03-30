@@ -44,9 +44,15 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
+
 # Screenshots
+
+### Home page ( unauthenticated )
+<img src ="screenshots/Home.png" width="1000" />
+
 ### Sign in page
 <img src ="screenshots/Sign-In.png" width="1000" />
 
 ### Sign up page
-<img src ="screenshots/Sign-up.png" width="1000" />
+<img src ="screenshots/sign-up.png" width="1000" />
+
