@@ -19,7 +19,6 @@ const App = () => {
     dispatch(fetchSeries());
   }, [dispatch]);
   useEffect(() => {
-    console.log("attempting to load");
     dispatch(loadUser());
   }, [dispatch, state.auth]);
 

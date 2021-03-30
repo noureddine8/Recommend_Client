@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Navbar from "../navbar/Navbar";
 import FileBase from "react-file-base64";
+
 import {
   Container,
   TextField,
@@ -19,7 +20,7 @@ import { useDispatch } from "react-redux";
 import { useStyles } from "./styles";
 import { useHistory } from "react-router-dom";
 
-function RecommendForm(props) {
+function RecommendForm() {
   const genres = [
     "action",
     "drama",
@@ -44,6 +45,7 @@ function RecommendForm(props) {
     imgUrl: "",
   };
   const [state, setState] = useState(initialState);
+
   const handleChange = (e) => {
     setState({ ...state, [e.target.name]: e.target.value });
   };
@@ -55,6 +57,7 @@ function RecommendForm(props) {
       dispatch(postSeries(state, history));
     }
   };
+
   return (
     <>
       <Navbar />
@@ -106,6 +109,7 @@ function RecommendForm(props) {
               value={state.shortDesc}
               onChange={handleChange}
               fullWidth
+              style={{ marginBottom: 40 }}
             />
             <TextField
               required
@@ -130,6 +134,7 @@ function RecommendForm(props) {
                 onDone={({ base64 }) => setState({ ...state, imgUrl: base64 })}
               />
             </Box>
+
             <Box display="flex" justifyContent="center">
               <Button
                 type="submit"

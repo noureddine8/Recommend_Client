@@ -14,7 +14,7 @@ import {
 } from "@material-ui/core";
 import Card from "../card/Card";
 
-function Home(props) {
+function Home() {
   const [filteredMovieType, setFilteredMovieType] = useState("all");
   const [filteredSeriesType, setFilteredSeriesType] = useState("all");
 
@@ -44,12 +44,14 @@ function Home(props) {
       ? series.series
       : series.series.filter((item) => item.genre === filteredSeriesType);
 
+  const margin = token ? 30 : 100;
+
   return (
     <>
       <CssBaseline />
       <Navbar />
       {token && (
-        <Grid container style={{ paddingTop: 100 }} direction="row-reverse">
+        <Grid container style={{ paddingTop: 80 }} direction="row-reverse">
           <Grid item xs={12} md={4} lg={2}>
             <Button
               fullWidth
@@ -62,7 +64,7 @@ function Home(props) {
           </Grid>
         </Grid>
       )}
-      <Grid container style={{ marginTop: 20, marginLeft: 30 }}>
+      <Grid container style={{ marginTop: margin, paddingLeft: 30 }}>
         <Grid item xs={12} md={2}>
           <Typography variant="h3">Movies</Typography>
         </Grid>
@@ -86,7 +88,7 @@ function Home(props) {
         </Grid>
       </Grid>
       <Box m={1.5}>
-        <Grid container spacing={1}>
+        <Grid container spacing={3}>
           {filteredMovie.length === 0 ? (
             <Grid
               item
@@ -121,7 +123,7 @@ function Home(props) {
         </Grid>
       </Box>
 
-      <Grid container style={{ marginTop: 100, marginLeft: 30 }}>
+      <Grid container style={{ marginTop: 100, paddingLeft: 30 }}>
         <Grid item xs={12} md={2}>
           <Typography variant="h3">TV Series</Typography>
         </Grid>

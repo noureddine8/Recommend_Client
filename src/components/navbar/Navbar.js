@@ -16,9 +16,11 @@ import React, { useState, useEffect } from "react";
 import { LOGOUT, AUTH_LOADING } from "../../redux/actionTypes";
 import { useDispatch, useSelector } from "react-redux";
 
-function Navbar(props) {
+function Navbar() {
   const state = useSelector((state) => state);
   const [currentUser, setCurrentUser] = useState(state.user.user?.name);
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [avatarName, setAvatarName] = useState(null);
   const classes = useStyles();
   const history = useHistory();
   const location = useLocation();
@@ -34,7 +36,6 @@ function Navbar(props) {
     history.push("/Login");
     setCurrentUser(null);
   };
-  const [anchorEl, setAnchorEl] = React.useState(null);
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -46,7 +47,6 @@ function Navbar(props) {
 
   useEffect(() => {
     const token = state.auth.token?.token;
-    console.log("Tooooooooken : ", token);
 
     if (token) {
       const decoded = decode(token);
@@ -58,10 +58,19 @@ function Navbar(props) {
   }, [location]);
 
   useEffect(() => {
+    if (currentUser) {
+      const array = currentUser.split(" ");
+      setAvatarName(
+        array[0].charAt(0).toUpperCase() + array[1].charAt(0).toUpperCase()
+      );
+    }
+  }, [currentUser]);
+
+  useEffect(() => {
     setCurrentUser(state.user.user?.name);
   }, [state.user.user?.name, location]);
   return (
-    <AppBar position="fixed">
+    <AppBar position="absolute">
       <Toolbar>
         <IconButton
           edge="start"
@@ -82,7 +91,7 @@ function Navbar(props) {
           <>
             <div>
               <Avatar className={classes.avatar} onClick={handleClick}>
-                {currentUser.charAt(0).toUpperCase()}
+                {avatarName}
               </Avatar>
               <Menu
                 id="simple-menu"
