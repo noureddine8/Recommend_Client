@@ -59,5 +59,8 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 ### Home page ( Authenticated )
 <img src ="screenshots/logged-home.png" width="1000" />
 
+### Adding a recommendation form
+<img src ="screenshots/Form.png" width="1000" />
+
 
 
