@@ -34,7 +34,22 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
+# Screenshots
 
+### Home page ( unauthenticated )
+<img src ="screenshots/Home.png" width="1000" />
+
+### Sign in page
+<img src ="screenshots/Sign-In.png" width="1000" />
+
+### Sign up page
+<img src ="screenshots/sign-up.png" width="1000" />
+
+### Home page ( Authenticated )
+<img src ="screenshots/logged-home.png" width="1000" />
+
+### Adding a recommendation form
+<img src ="screenshots/Form.png" width="1000" />
 
 
 
