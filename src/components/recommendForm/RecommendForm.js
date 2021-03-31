@@ -62,6 +62,9 @@ function RecommendForm() {
     <>
       <Navbar />
       <Container className={classes.container} maxWidth="sm">
+        <Typography variant="h4" align="center">
+          ADD A RECOMMENDATION
+        </Typography>
         <Paper elevation={3} className={classes.paper}>
           <form onSubmit={handleSubmit}>
             <TextField
