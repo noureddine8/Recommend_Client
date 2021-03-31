@@ -37,19 +37,19 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 # Screenshots
 
 ### Home page ( unauthenticated )
-<img src ="screenshots/Home.png" width="1000" />
+<img src ="screenshots/Home.png" width="800" />
 
 ### Sign in page
-<img src ="screenshots/Sign-In.png" width="1000" />
+<img src ="screenshots/Sign-In.png" width="800" />
 
 ### Sign up page
-<img src ="screenshots/sign-up.png" width="1000" />
+<img src ="screenshots/sign-up.png" width="800" />
 
 ### Home page ( Authenticated )
-<img src ="screenshots/logged-home.png" width="1000" />
+<img src ="screenshots/logged-home.png" width="800" />
 
 ### Adding a recommendation form
-<img src ="screenshots/Form.png" width="1000" />
+<img src ="screenshots/Form.png" width="800" />
 
 
 
