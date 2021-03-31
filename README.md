@@ -46,7 +46,7 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 <img src ="screenshots/sign-up.png" width="1000" />
 
 ### Home page ( Authenticated )
-<img src ="screenshots/logged-home.png" width="1000" />
+<img src ="screenshots/logged-home.png" width="800" />
 
 ### Adding a recommendation form
 <img src ="screenshots/Form.png" width="1000" />
