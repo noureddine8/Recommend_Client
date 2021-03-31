@@ -37,7 +37,7 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 # Screenshots
 
 ### Home page ( unauthenticated )
-<img src ="screenshots/Home.png" width="1000" />
+<img src ="screenshots/Home.png" width="800" />
 
 ### Sign in page
 <img src ="screenshots/Sign-In.png" width="1000" />
