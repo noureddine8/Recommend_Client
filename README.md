@@ -34,8 +34,6 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-
-
 # Screenshots
 
 ### Home page ( unauthenticated )
@@ -52,6 +50,8 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 
 ### Adding a recommendation form
 <img src ="screenshots/Form.png" width="1000" />
+
+
 
 
 
