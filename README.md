@@ -23,6 +23,7 @@ You will also see any lint errors in the console.
 * Designing and developping the UI using Material UI library
 * State management using Redux
 * Navigation between different routes
+* Making HTTP request from the backend using axios
 
 ## Screenshots
 
